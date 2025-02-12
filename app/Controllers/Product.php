@@ -71,8 +71,11 @@ class Product extends BaseController
     {
         $id = $this->request->getPost('id');
         $model = new ModelProduct();
-        $model->find($id);
-        return view('product/update', ['title' => 'Update']);
+        $data = [
+            'title' => 'Update',
+            'product' => $model->find($id),
+        ];
+        return view('product/update', $data);
     }
 
     public function update()
@@ -113,7 +116,7 @@ class Product extends BaseController
             $model = new ModelProduct();
             $model->update($id, $data);
 
-            return redirect()->to('product')->with('success', 'Data successfully created');
+            return redirect()->to('product')->with('success', 'Data successfully updated');
         } else {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
