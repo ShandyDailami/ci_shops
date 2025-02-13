@@ -8,6 +8,12 @@ use CodeIgniter\HTTP\ResponseInterface;
 
 class Auth extends BaseController
 {
+    public function index()
+    {
+        if (!session()->has('id')) {
+            return redirect()->to('/login');
+        }
+    }
     public function loginPage()
     {
         return view('auth/login', ['title' => 'Login Page']);

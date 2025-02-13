@@ -9,6 +9,7 @@ use CodeIgniter\Router\RouteCollection;
  * @var RouteCollection $routes
  */
 $routes->group('', function ($routes) {
+  $routes->get('/', [Auth::class, 'index']);
   $routes->get('/login', [Auth::class, 'loginPage']);
   $routes->post('/login', [Auth::class, 'login']);
   $routes->get('/logout', [Auth::class, 'logout']);
