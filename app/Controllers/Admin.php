@@ -9,6 +9,6 @@ class Admin extends BaseController
 {
     public function dashboard()
     {
-        return view('admin/dashboard');
+        return view('admin/dashboard', ['title' => 'Dashboard']);
     }
 }

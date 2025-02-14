@@ -17,4 +17,5 @@
     </div>
   <?php endif ?>
 </div>
+<button id="logout" class="btn btn-danger">Log out</button>
 <?= $this->endSection('content') ?>

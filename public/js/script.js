@@ -12,3 +12,11 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   }, 5000);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const logoutBtn = document.getElementById('logout');
+
+  logoutBtn.addEventListener('click', () => {
+    window.location.href = '/logout'
+  });
+})

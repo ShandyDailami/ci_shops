@@ -9,6 +9,6 @@ class Cashier extends BaseController
 {
     public function dashboard()
     {
-        return view('cashier/dashboard');
+        return view('cashier/dashboard', ['title' => 'Ddashboard']);
     }
 }
