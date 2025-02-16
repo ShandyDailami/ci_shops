@@ -14,3 +14,24 @@
   transform: translateY(-20px);
   opacity: 0;
 }
+
+.table-custom {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .1);
+}
+
+.table-custom thead th {
+  background-color: #0d6efd;
+  color: white;
+  font-weight: bold;
+}
+
+.table-custom tbody tr:hover {
+  background-color: #f1f1f1;
+  transition: background-color .3s ease;
+}
+
+td {
+  vertical-align: middle;
+}

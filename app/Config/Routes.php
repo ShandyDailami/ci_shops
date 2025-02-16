@@ -3,6 +3,7 @@
 use App\Controllers\Admin;
 use App\Controllers\Auth;
 use App\Controllers\Cashier;
+use App\Controllers\Category;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -13,6 +14,9 @@ $routes->group('', function ($routes) {
   $routes->get('/login', [Auth::class, 'loginPage']);
   $routes->post('/login', [Auth::class, 'login']);
   $routes->get('/logout', [Auth::class, 'logout']);
+});
+$routes->group('category', function ($routes) {
+  $routes->get('list', [Category::class, 'index']);
 });
 
 $routes->group('admin', ['filters' => 'role:admin'], function ($routes) {

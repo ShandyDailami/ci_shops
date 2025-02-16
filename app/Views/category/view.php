@@ -24,22 +24,22 @@
         </tr>
       </thead>
       <tbody class="text-center">
-        <?php if (!empty($contacts)): ?>
-          <?php foreach ($contacts as $index => $contact): ?>
+        <?php if (!empty($categories)): ?>
+          <?php foreach ($categories as $index => $category): ?>
             <tr>
               <td><?= $index + 1 ?></td>
-              <td><?= esc($contact['name']) ?></td>
+              <td><?= esc($category['name']) ?></td>
               <td>
-                <button id="edit" data-id="<?= esc($contact['id']) ?>" class="btn btn-primary"><i
+                <button id="edit" data-id="<?= esc($category['id']) ?>" class="btn btn-primary"><i
                     class="bi bi-pencil-square"></i></button>
                 <button class="btn btn-danger" data-bs-target="#delete" data-bs-toggle="modal"
-                  data-id="<?= esc($contact['id']) ?>"><i class="bi bi-trash"></i></button>
+                  data-id="<?= esc($category['id']) ?>"><i class="bi bi-trash"></i></button>
               </td>
             </tr>
           <?php endforeach ?>
         <?php else: ?>
           <tr>
-            <td colspan="5">No Item Found</td>
+            <td colspan="3">No Item Found</td>
           </tr>
         <?php endif ?>
       </tbody>
