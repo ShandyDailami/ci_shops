@@ -20,6 +20,11 @@ class Category extends BaseController
         return view('category/view', $data);
     }
 
+    public function createPage()
+    {
+        return view('category/add', ['title' => 'Add']);
+    }
+
     public function create()
     {
         helper('form');
