@@ -22,7 +22,7 @@ class Category extends BaseController
 
     public function createPage()
     {
-        return view('category/add', ['title' => 'Add']);
+        return view('category/create', ['title' => 'Category - Create']);
     }
 
     public function create()
@@ -43,9 +43,9 @@ class Category extends BaseController
             $model = new ModelsCategory();
             $model->insert($data);
 
-            redirect()->to('category')->with('success', 'Category successfully saved');
+            return redirect()->to('category/list')->with('success', 'Category successfully saved');
         } else {
-            redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
     }
 
@@ -54,7 +54,7 @@ class Category extends BaseController
         $id = $this->request->getPost('id');
         $model = new ModelsCategory();
         $data = [
-            'title' => 'Update',
+            'title' => 'Category - Update',
             'category' => $model->find($id),
         ];
 

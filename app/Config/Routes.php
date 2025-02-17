@@ -17,6 +17,8 @@ $routes->group('', function ($routes) {
 });
 $routes->group('category', function ($routes) {
   $routes->get('list', [Category::class, 'index']);
+  $routes->get('create', [Category::class, 'createPage']);
+  $routes->post('create', [Category::class, 'create']);
 });
 
 $routes->group('admin', ['filters' => 'role:admin'], function ($routes) {
