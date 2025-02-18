@@ -19,6 +19,8 @@ $routes->group('category', function ($routes) {
   $routes->get('list', [Category::class, 'index']);
   $routes->get('create', [Category::class, 'createPage']);
   $routes->post('create', [Category::class, 'create']);
+  $routes->get('edit/(:num)', [Category::class, 'updatePage']);
+  $routes->post('edit/(:num)', [Category::class, 'update']);
 });
 
 $routes->group('admin', ['filters' => 'role:admin'], function ($routes) {

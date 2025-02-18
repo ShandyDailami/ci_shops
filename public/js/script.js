@@ -36,3 +36,16 @@ document.addEventListener('DOMContentLoaded', () => {
     window.location.href = 'delete/' + selectedId;
   });
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  const editBtn = document.querySelectorAll('#edit');
+  let selectedId = null;
+
+  editBtn.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      selectedId = btn.dataset.id;
+
+      window.location.href = 'edit/' + selectedId;
+    });
+  });
+});
