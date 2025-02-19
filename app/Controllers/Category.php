@@ -49,9 +49,8 @@ class Category extends BaseController
         }
     }
 
-    public function updatePage()
+    public function updatePage($id)
     {
-        $id = $this->request->getPost('id');
         $model = new ModelsCategory();
         $data = [
             'title' => 'Category - Update',
@@ -61,9 +60,13 @@ class Category extends BaseController
         return view('category/update', $data);
     }
 
-    public function update()
+    public function update($id)
     {
         helper('form');
+        $model = new ModelsCategory();
+        $model->update($id, [
+            'name' => $this->request->getPost('name'),
+        ]);
         if (
             $this->validate([
                 'name' => [
@@ -72,14 +75,7 @@ class Category extends BaseController
                 ]
             ])
         ) {
-            $id = $this->request->getPost('id');
-            $data = [
-                'name' => $this->request->getPost('name'),
-            ];
-            $model = new ModelsCategory();
-            $model->update($id, $data);
-
-            return redirect()->to('category')->with('success', 'Category successfully updated');
+            return redirect()->to('category/list')->with('success', 'Category successfully updated');
         } else {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
@@ -93,7 +89,7 @@ class Category extends BaseController
         if ($category) {
             $model->delete($id);
 
-            return redirect()->to('category')->with('success', 'Category successfully deleted');
+            return redirect()->to('category/list')->with('success', 'Category successfully deleted');
         } else {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Category not found');
         }

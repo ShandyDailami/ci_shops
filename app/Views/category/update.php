@@ -21,7 +21,7 @@
         <div class="mb-3">
           <label for="name" class="form-label">Name</label>
           <input type="text" id="name" class="form-control" name="name" placeholder="Name"
-            value="<?= esc($category['id']) ?>">
+            value="<?= esc($category['name']) ?>">
         </div>
         <div class="mb-3 ">
           <button type="submit" class="btn btn-primary w-100">Create</button>
