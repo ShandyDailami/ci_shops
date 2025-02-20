@@ -33,7 +33,9 @@ class Category extends BaseController
             $this->validate([
                 'name' => [
                     'rules' => 'required',
-                    'errors' => 'Category cannot be empty',
+                    'errors' => [
+                        'required' => 'Name cannot be empty'
+                    ],
                 ]
             ])
         ) {
@@ -71,13 +73,15 @@ class Category extends BaseController
             $this->validate([
                 'name' => [
                     'rules' => 'required',
-                    'errors' => 'Name cannot be empty',
+                    'errors' => [
+                        'required' => 'Name cannot be empty'
+                    ],
                 ]
             ])
         ) {
             return redirect()->to('category/list')->with('success', 'Category successfully updated');
         } else {
-            return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            return redirect()->back()->with('errors', $this->validator->getErrors());
         }
     }
 

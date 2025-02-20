@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\Category;
 use App\Models\Product as ModelProduct;
 use CodeIgniter\HTTP\ResponseInterface;
 
@@ -11,17 +12,23 @@ class Product extends BaseController
     public function index()
     {
         $model = new ModelProduct();
-        $product = $model->select('product.*, category.name')->join('category', 'category.id = product.categpory_id')->findAll();
+        $product = $model->select('products.*, categories.name')->join('categories', 'categories.id = products.category_id')->findAll();
         $data = [
             'title' => 'Product',
             'products' => $product,
         ];
-        return view('product/index', $data);
+        return view('product/list', $data);
     }
 
     public function createPage()
     {
-        return view('product/create', ['title' => 'Create']);
+        $model = new Category();
+        $categories = $model->findAll();
+        $data = [
+            'title' => 'Create',
+            'categories' => $categories,
+        ];
+        return view('product/create', $data);
     }
 
     public function create()
@@ -31,23 +38,33 @@ class Product extends BaseController
             $this->validate([
                 'name' => [
                     'rules' => 'required',
-                    'errors' => 'Name cannot be empty',
+                    'errors' => [
+                        'required' => 'Name cannot be empty',
+                    ],
                 ],
                 'description' => [
                     'rules' => 'required',
-                    'errors' => 'Description cannot be empty',
+                    'errors' => [
+                        'required' => 'Description cannot be empty',
+                    ],
                 ],
                 'category_id' => [
                     'rules' => 'required',
-                    'errors' => 'Category cannot be empty',
+                    'errors' => [
+                        'required' => 'Category cannot be empty'
+                    ],
                 ],
                 'price' => [
                     'rules' => 'required',
-                    'errors' => 'Price cannot be empty',
+                    'errors' => [
+                        'required' => 'Price cannot be empty'
+                    ],
                 ],
                 'stock' => [
                     'rules' => 'required',
-                    'errors' => 'Stock cannot be empty',
+                    'errors' => [
+                        'required' => 'Stock cannot be empty'
+                    ],
                 ],
             ])
         ) {
@@ -61,15 +78,14 @@ class Product extends BaseController
             $model = new ModelProduct();
             $model->insert($data);
 
-            return redirect()->to('product')->with('success', 'Data successfully created');
+            return redirect()->to('product/list')->with('success', 'Data successfully created');
         } else {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
     }
 
-    public function updatePage()
+    public function updatePage($id)
     {
-        $id = $this->request->getPost('id');
         $model = new ModelProduct();
         $data = [
             'title' => 'Update',
@@ -78,7 +94,7 @@ class Product extends BaseController
         return view('product/update', $data);
     }
 
-    public function update()
+    public function update($id)
     {
         helper('form');
         if (
@@ -105,7 +121,6 @@ class Product extends BaseController
                 ],
             ])
         ) {
-            $id = $this->request->getPost('id');
             $data = [
                 'name' => $this->request->getPost('name'),
                 'description' => $this->request->getPost('description'),

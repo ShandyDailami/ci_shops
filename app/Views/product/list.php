@@ -14,7 +14,7 @@
   <?php endif ?>
 </div>
 <a href="/admin/dashboard" class="btn btn-primary">Home</a>
-<a href="/category/create" class="btn btn-success">Add</a>
+<a href="/product/create" class="btn btn-success">Add</a>
 <div class="row container-fluid p-0 m-0">
   <div class="col d-flex flex-column align-items-center justify-content-center">
     <table class="table table-custom table-striped table-hover">
@@ -22,26 +22,34 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Name</th>
+          <th scope="col">Description</th>
+          <th scope="col">Category</th>
+          <th scope="col">Price</th>
+          <th scope="col">Stock</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
       <tbody class="text-center">
-        <?php if (!empty($categories)): ?>
-          <?php foreach ($categories as $index => $category): ?>
+        <?php if (!empty($products)): ?>
+          <?php foreach ($products as $index => $product): ?>
             <tr>
               <td><?= $index + 1 ?></td>
-              <td><?= esc($category['name']) ?></td>
+              <td><?= esc($product['name']) ?></td>
+              <td><?= esc($product['description']) ?></td>
+              <td><?= esc($product['category_id']) ?></td>
+              <td><?= esc($product['price']) ?></td>
+              <td><?= esc($product['stock']) ?></td>
               <td>
-                <button id="edit" data-id="<?= esc($category['id']) ?>" class="btn btn-primary"><i
+                <button id="edit" data-id="<?= esc($product['id']) ?>" class="btn btn-primary"><i
                     class="bi bi-pencil-square"></i></button>
                 <button class="btn btn-danger" data-bs-target="#delete" data-bs-toggle="modal"
-                  data-id="<?= esc($category['id']) ?>"><i class="bi bi-trash"></i></button>
+                  data-id="<?= esc($product['id']) ?>"><i class="bi bi-trash"></i></button>
               </td>
             </tr>
           <?php endforeach ?>
         <?php else: ?>
           <tr>
-            <td colspan="3">No Item Found</td>
+            <td colspan="7">No Item Found</td>
           </tr>
         <?php endif ?>
       </tbody>

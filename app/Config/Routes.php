@@ -4,6 +4,7 @@ use App\Controllers\Admin;
 use App\Controllers\Auth;
 use App\Controllers\Cashier;
 use App\Controllers\Category;
+use App\Controllers\Product;
 use CodeIgniter\Router\RouteCollection;
 
 /**
@@ -22,6 +23,11 @@ $routes->group('category', function ($routes) {
   $routes->get('edit/(:num)', [Category::class, 'updatePage']);
   $routes->post('edit/(:num)', [Category::class, 'update']);
   $routes->get('delete/(:num)', [Category::class, 'delete']);
+});
+$routes->group('product', function ($routes) {
+  $routes->get('list', [Product::class, 'index']);
+  $routes->get('create', [Product::class, 'createPage']);
+  $routes->post('create', [Product::class, 'create']);
 });
 
 $routes->group('admin', ['filters' => 'role:admin'], function ($routes) {

@@ -18,4 +18,6 @@
   <?php endif ?>
 </div>
 <button id="logout" class="btn btn-danger">Log out</button>
+<a href="/category/list" class="btn btn-primary">Category</a>
+<a href="/product/list" class="btn btn-primary">Product</a>
 <?= $this->endSection('content') ?>
