@@ -12,7 +12,7 @@ class Product extends BaseController
     public function index()
     {
         $model = new ModelProduct();
-        $product = $model->select('products.*, categories.name')->join('categories', 'categories.id = products.category_id')->findAll();
+        $product = $model->select('products.*, categories.name as category_name')->join('categories', 'categories.id = products.category_id')->findAll();
         $data = [
             'title' => 'Product',
             'products' => $product,
@@ -145,7 +145,7 @@ class Product extends BaseController
             $model = new ModelProduct();
             $model->update($id, $data);
 
-            return redirect()->to('product')->with('success', 'Data successfully updated');
+            return redirect()->to('product/list')->with('success', 'Data successfully updated');
         } else {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }

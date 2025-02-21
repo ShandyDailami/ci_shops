@@ -17,7 +17,7 @@
 <a href="/product/create" class="btn btn-success">Add</a>
 <div class="row container-fluid p-0 m-0">
   <div class="col d-flex flex-column align-items-center justify-content-center">
-    <table class="table table-custom table-striped table-hover">
+    <table class="table table-custom table-striped table-hover mt-3">
       <thead>
         <tr>
           <th scope="col">#</th>
@@ -36,7 +36,7 @@
               <td><?= $index + 1 ?></td>
               <td><?= esc($product['name']) ?></td>
               <td><?= esc($product['description']) ?></td>
-              <td><?= esc($product['category_id']) ?></td>
+              <td><?= esc($product['category_name']) ?></td>
               <td><?= esc($product['price']) ?></td>
               <td><?= esc($product['stock']) ?></td>
               <td>

@@ -39,12 +39,12 @@
         <div class="mb-3">
           <label for="price" class="form-label">Price</label>
           <input type="text" id="price" class="form-control" name="price" placeholder="Price"
-            value="<?= old('price') ?>">
+            oninput="this.value = this.value.replace(/[^0-9]/g, '')" value="<?= old('price') ?>">
         </div>
         <div class="mb-3">
           <label for="stock" class="form-label">Stock</label>
           <input type="text" id="stock" class="form-control" name="stock" placeholder="Stock"
-            value="<?= old('stock') ?>">
+            oninput="this.value = this.value.replace(/[^0-9]/g, '')" value="<?= old('stock') ?>">
         </div>
         <div class="mb-3 d-flex flex-row">
           <button type="submit" class="btn btn-primary me-2">Create</button>

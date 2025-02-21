@@ -17,7 +17,7 @@
 <a href="/category/create" class="btn btn-success">Add</a>
 <div class="row container-fluid p-0 m-0">
   <div class="col d-flex flex-column align-items-center justify-content-center">
-    <table class="table table-custom table-striped table-hover">
+    <table class="table table-custom table-striped table-hover mt-3">
       <thead>
         <tr>
           <th scope="col">#</th>
