@@ -9,6 +9,10 @@ class Admin extends BaseController
 {
     public function dashboard()
     {
-        return view('admin/dashboard', ['title' => 'Dashboard']);
+        if (!session()->has('id')) {
+            return redirect()->to('/login');
+        } else {
+            return view('admin/dashboard', ['title' => 'Dashboard']);
+        }
     }
 }

@@ -17,7 +17,11 @@ class Product extends BaseController
             'title' => 'Product',
             'products' => $product,
         ];
-        return view('product/list', $data);
+        if (!session()->has('id')) {
+            return redirect()->to('login');
+        } else {
+            return view('product/list', $data);
+        }
     }
 
     public function createPage()
@@ -28,7 +32,11 @@ class Product extends BaseController
             'title' => 'Create',
             'categories' => $categories,
         ];
-        return view('product/create', $data);
+        if (!session()->has('id')) {
+            return redirect()->to('login');
+        } else {
+            return view('product/create', $data);
+        }
     }
 
     public function create()
@@ -87,11 +95,17 @@ class Product extends BaseController
     public function updatePage($id)
     {
         $model = new ModelProduct();
+        $categoryoModel = new Category();
         $data = [
             'title' => 'Update',
             'product' => $model->find($id),
+            'categories' => $categoryoModel->findAll(),
         ];
-        return view('product/update', $data);
+        if (!session()->has('id')) {
+            return redirect()->to('login');
+        } else {
+            return view('product/update', $data);
+        }
     }
 
     public function update($id)
@@ -145,7 +159,7 @@ class Product extends BaseController
         if ($product) {
             $model->delete($id);
 
-            return redirect()->to('product')->with('success', 'Data successfully deleted');
+            return redirect()->to('product/list')->with('success', 'Data successfully deleted');
         } else {
             throw new \CodeIgniter\Exceptions\PageNotFoundException('Data not find');
         }

@@ -28,6 +28,9 @@ $routes->group('product', function ($routes) {
   $routes->get('list', [Product::class, 'index']);
   $routes->get('create', [Product::class, 'createPage']);
   $routes->post('create', [Product::class, 'create']);
+  $routes->get('edit/(:num)', [Product::class, 'updatePage']);
+  $routes->post('edit/(:num)', [Product::class, 'update']);
+  $routes->get('delete/(:num)', [Product::class, 'delete']);
 });
 
 $routes->group('admin', ['filters' => 'role:admin'], function ($routes) {

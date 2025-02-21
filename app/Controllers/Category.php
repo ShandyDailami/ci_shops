@@ -11,18 +11,26 @@ class Category extends BaseController
 {
     public function index()
     {
+        // dd(session()->get()); -> digunakan untuk debugging mengecek apakah ada data session
         $model = new ModelsCategory();
         $data = [
             'title' => 'Category',
             'categories' => $model->findAll(),
         ];
-
-        return view('category/view', $data);
+        if (!session()->has('id')) {
+            return redirect()->to('login');
+        } else {
+            return view('category/view', $data);
+        }
     }
 
     public function createPage()
     {
-        return view('category/create', ['title' => 'Category - Create']);
+        if (!session()->has('id')) {
+            return redirect()->to('login');
+        } else {
+            return view('category/create', ['title' => 'Category - Create']);
+        }
     }
 
     public function create()
@@ -59,7 +67,11 @@ class Category extends BaseController
             'category' => $model->find($id),
         ];
 
-        return view('category/update', $data);
+        if (!session()->has('id')) {
+            return redirect()->to('login');
+        } else {
+            return view('category/update', $data);
+        }
     }
 
     public function update($id)
