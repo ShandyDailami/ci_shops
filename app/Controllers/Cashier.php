@@ -9,6 +9,15 @@ class Cashier extends BaseController
 {
     public function dashboard()
     {
-        return view('cashier/dashboard', ['title' => 'Ddashboard']);
+        $model = new Transaction();
+        $data = [
+            'title' => 'Dashboard',
+            'transactions' => $model->findAll(),
+        ];
+        if (!session()->has('id')) {
+            return redirect()->to('/login');
+        } else {
+            return view('cashier/dashboard', $data);
+        }
     }
 }

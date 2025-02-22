@@ -10,9 +10,9 @@ class User extends Seeder
     {
         $user_data = [
             [
-                'username' => 'gandul',
-                'password' => password_hash('gandul123', PASSWORD_DEFAULT),
-                'role' => 'admin',
+                'username' => 'agus',
+                'password' => password_hash('agus123', PASSWORD_DEFAULT),
+                'role' => 'cashier',
             ]
         ];
 
