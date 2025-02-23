@@ -50,7 +50,7 @@
             value="<?= esc($product['stock']) ?>">
         </div>
         <div class="mb-3 d-flex flex-row">
-          <button type="submit" class="btn btn-primary me-2">Create</button>
+          <button type="submit" class="btn btn-primary me-2">Update</button>
           <a href="/product/list" type="submit" class="btn btn-secondary">Back</a>
         </div>
       </form>

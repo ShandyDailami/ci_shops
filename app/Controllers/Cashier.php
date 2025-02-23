@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\Transaction;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Cashier extends BaseController
@@ -19,5 +20,10 @@ class Cashier extends BaseController
         } else {
             return view('cashier/dashboard', $data);
         }
+    }
+
+    public function createPage()
+    {
+        return view('cashier/createTransaction', ['title' => 'create']);
     }
 }
