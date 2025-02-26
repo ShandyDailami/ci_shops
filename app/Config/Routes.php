@@ -32,9 +32,10 @@ $routes->group('product', function ($routes) {
   $routes->post('edit/(:num)', [Product::class, 'update']);
   $routes->get('delete/(:num)', [Product::class, 'delete']);
 });
-$routes->group('transaction', function($routes) {
-  $routes->get('list', [Cashier::class, 'view']);
-})
+
+$routes->group('transaction', function ($routes) {
+  $routes->get('create', [Cashier::class, 'createPage']);
+});
 
 $routes->group('admin', ['filters' => 'role:admin'], function ($routes) {
   $routes->get('dashboard', [Admin::class, 'dashboard']);
