@@ -31,16 +31,16 @@
         </tr>
       </thead>
       <tbody class="text-center">
-        <?php if (!empty($categories)): ?>
-          <?php foreach ($categories as $index => $category): ?>
+        <?php if (!empty($transactions)): ?>
+          <?php foreach ($transactions as $index => $transaction): ?>
             <tr>
               <td><?= $index + 1 ?></td>
-              <td><?= esc($category['name']) ?></td>
+              <td><?= esc($transaction['name']) ?></td>
               <td>
-                <button id="edit" data-id="<?= esc($category['id']) ?>" class="btn btn-primary"><i
+                <button id="edit" data-id="<?= esc($transaction['id']) ?>" class="btn btn-primary"><i
                     class="bi bi-pencil-square"></i></button>
                 <button class="btn btn-danger" data-bs-target="#delete" data-bs-toggle="modal"
-                  data-id="<?= esc($category['id']) ?>"><i class="bi bi-trash"></i></button>
+                  data-id="<?= esc($transaction['id']) ?>"><i class="bi bi-trash"></i></button>
               </td>
             </tr>
           <?php endforeach ?>
