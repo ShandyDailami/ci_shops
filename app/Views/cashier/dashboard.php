@@ -27,6 +27,8 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Name</th>
+          <th scope="col">Quantity</th>
+          <th scope="col">Total</th>
           <th scope="col">Action</th>
         </tr>
       </thead>
@@ -36,6 +38,8 @@
             <tr>
               <td><?= $index + 1 ?></td>
               <td><?= esc($transaction['name']) ?></td>
+              <td><?= esc($transaction['quantity']) ?></td>
+              <td>Rp<?= number_format(esc($transaction['total']), 2, ',', '.') ?></td>
               <td>
                 <button id="edit" data-id="<?= esc($transaction['id']) ?>" class="btn btn-primary"><i
                     class="bi bi-pencil-square"></i></button>

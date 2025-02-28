@@ -14,7 +14,9 @@ class Cashier extends BaseController
         $model = new Transaction();
         $data = [
             'title' => 'Dashboard',
-            'transactions' => $model->findAll(),
+            'transactions' => $model->select('transactions.*, products.name, products.price')
+                ->join('products', 'products.id = transactions.product_id')
+                ->findAll(),
         ];
         if (!session()->has('id')) {
             return redirect()->to('/login');
@@ -25,28 +27,52 @@ class Cashier extends BaseController
 
     public function createPage()
     {
-        return view('cashier/createTransaction', ['title' => 'create']);
+        $model = new Product();
+        $data = [
+            'products' => $model->findAll(),
+            'title' => 'create'
+        ];
+        return view('cashier/createTransaction', $data);
     }
 
     public function store()
     {
-        $model = new Transaction();
-        $productModel = new Product();
+        if (
+            $this->validate([
+                'product_id' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Product cannot be empty'
+                    ]
+                ],
+                'quantity' => [
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => 'Quantity cannot be empty'
+                    ]
+                ],
+            ])
+        ) {
+            $model = new Transaction();
+            $productModel = new Product();
 
-        $product_id = $this->request->getPost('product_id');
-        $quantity = $this->request->getPost('quantity');
+            $product_id = $this->request->getPost('product_id');
+            $quantity = $this->request->getPost('quantity');
 
-        $product = $productModel->find($product_id);
+            $product = $productModel->find($product_id);
 
-        $total = ($product['price'] * $quantity);
+            $total = $product['price'] * $quantity;
 
-        $data = [
-            'product_id' => $product_id,
-            'quantity' => $quantity,
-            'total' => $total,
-        ];
+            $data = [
+                'product_id' => $product_id,
+                'quantity' => $quantity,
+                'total' => $total,
+            ];
 
-        $model->insert($data);
-        return redirect()->to('/cashier/dashboard');
+            $model->insert($data);
+            return redirect()->to('/cashier/dashboard')->with('success', 'Data successfully saved');
+        } else {
+            return redirect()->to('/transaction/create')->withInput()->with('errors', $this->validator->getErrors());
+        }
     }
 }

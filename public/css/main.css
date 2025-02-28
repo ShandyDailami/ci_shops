@@ -25,6 +25,7 @@
   background-color: #0d6efd;
   color: white;
   font-weight: bold;
+  text-align: center;
 }
 
 .table-custom tbody tr:hover {

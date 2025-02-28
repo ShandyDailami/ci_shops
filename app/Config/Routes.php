@@ -35,6 +35,7 @@ $routes->group('product', function ($routes) {
 
 $routes->group('transaction', function ($routes) {
   $routes->get('create', [Cashier::class, 'createPage']);
+  $routes->post('create', [Cashier::class, 'store']);
 });
 
 $routes->group('admin', ['filters' => 'role:admin'], function ($routes) {
