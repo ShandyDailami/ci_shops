@@ -7,5 +7,5 @@ use CodeIgniter\Model;
 class Transaction extends Model
 {
     protected $table = 'transactions';
-    protected $allowedFields = [];
+    protected $allowedFields = ['product_id', 'quantity', 'total'];
 }
